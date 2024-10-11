@@ -1,10 +1,11 @@
 ---
 layout: page
-title: project 4
-description: another without an image
-img:
-importance: 3
-category: fun
+title: Social Norm Dynamics
+description: Understanding norm propogation in online communities
+img: assets/img/norms.png
+importance: 1
+category: work
+giscus_comments: true
 ---
 
 Every project has a beautiful feature showcase page.
