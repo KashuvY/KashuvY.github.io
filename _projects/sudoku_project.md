@@ -2,7 +2,7 @@
 layout: page
 title: Sudoku
 description: Implementing sudoku in python
-img: assets/img/sudoku.png
+img: assets/img/sudoku.jpg
 importance: 3
 category: fun
 giscus_comments: true
