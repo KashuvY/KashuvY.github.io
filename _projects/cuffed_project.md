@@ -1,10 +1,10 @@
 ---
 layout: page
-title: project 5
-description: a project with a background image
-img: assets/img/1.jpg
-importance: 3
-category: fun
+title: Cuffed
+description: Building a dating algorithm
+img: assets/img/cuffed.png
+importance: 2
+category: work
 ---
 
 Every project has a beautiful feature showcase page.
