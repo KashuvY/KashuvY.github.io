@@ -1,9 +1,9 @@
 ---
 layout: page
-title: project 9
-description: another project with an image 🎉
-img: assets/img/6.jpg
-importance: 4
+title: Minesweeper
+description: Implementing minesweeper in C++ 🎉
+img: assets/img/minesweeper.png
+importance: 3
 category: fun
 ---
 
