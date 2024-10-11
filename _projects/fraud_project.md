@@ -3,7 +3,7 @@ layout: page
 title: Federated Fraud Detection
 description: Privacy preserving fraud detection in a HFL environment
 img: assets/img/fraud.png
-redirect: https://unsplash.com
+redirect: /blog/2024/tabs/
 importance: 1
 category: work
 ---
