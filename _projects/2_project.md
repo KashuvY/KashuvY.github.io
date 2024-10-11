@@ -1,9 +1,9 @@
 ---
 layout: page
-title: project 2
-description: a project with a background image and giscus comments
-img: assets/img/3.jpg
-importance: 2
+title: Social Norm Dynamics
+description: Understanding norm propogation in online communities
+img: assets/img/norms.png
+importance: 1
 category: work
 giscus_comments: true
 ---
