@@ -1,8 +1,8 @@
 ---
 layout: page
-title: project 1 edited
-description: with background image
-img: assets/img/12.jpg
+title: Predicting Tipping
+description: Mitigating misinformation in OSNs
+img: assets/img/tipping.png
 importance: 1
 category: work
 related_publications: true
