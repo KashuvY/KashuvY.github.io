@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://KashuvY.github.io/al-folio/sitemap.xml
+Sitemap: https://KashuvY.github.io/sitemap.xml
