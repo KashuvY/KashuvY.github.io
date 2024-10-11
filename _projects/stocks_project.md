@@ -1,9 +1,9 @@
 ---
 layout: page
-title: project 6
-description: a project with no image
-img:
-importance: 4
+title: Stock Pricing
+description: Can ML predict quarterly earnings?
+img: /assets/img/stocks.png
+importance: 1
 category: fun
 ---
 
