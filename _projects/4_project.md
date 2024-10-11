@@ -1,9 +1,9 @@
 ---
 layout: page
-title: project 4
-description: another without an image
-img:
-importance: 3
+title: KGF
+description: Solving the Klein-Gordon-Folk Equation (distributionally)
+img: /assets/img/kgf.png
+importance: 1
 category: fun
 ---
 
