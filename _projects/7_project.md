@@ -1,9 +1,9 @@
 ---
 layout: page
-title: project 7
-description: with background image
-img: assets/img/4.jpg
-importance: 1
+title: Web Scraping
+description: Extracting 8-K SEC data
+img: assets/img/scraping.png
+importance: 2
 category: work
 related_publications: true
 ---
