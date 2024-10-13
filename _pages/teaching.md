@@ -3,7 +3,7 @@ layout: page
 permalink: /teaching/
 title: teaching
 description: Teaching material for UF's GatorAI Club's lecture series
-nav: true
+nav: false
 nav_order: 6
 ---
 
