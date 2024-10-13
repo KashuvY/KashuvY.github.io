@@ -2,24 +2,19 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
 
 profile:
   align: right
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
-  more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
 
 news: true # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+social: false # includes social icons at the bottom of the page
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+My name is Youval Kashuv and I am a 3rd year Computer Science and Math student at the [University of Florida](https://www.cise.ufl.edu/), where I perform research under the guidance guidance of [Dr. My Thai](https://www.cise.ufl.edu/~mythai/) in the areas of GNNs, Information Integrity, and Federated Learning. 
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+Recently I worked at [Cuffed](https://www.cuffed.dating/) as an Algorithm Developer Intern, training machine learning models and designing algorithms to increase user match rate. Before that, I was a Machine Learning Engineer Intern at [Intrinio](https://intrinio.com/). There I created an end-to-end pipeline for extraction/standardization of 8-K SEC data, providing new data from over 1,000 publicly traded companies
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+My interests include geometric deep learning, GNNs, and reinforcement learning. Actively searching for ML engineer/research intern positions for Summer 2025. Feel free to reach out to me at [youval.kashuv@ufl.edu](mailto::youval.kashuv@ufl.edu).

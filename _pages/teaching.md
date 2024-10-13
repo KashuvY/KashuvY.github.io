@@ -2,11 +2,18 @@
 layout: page
 permalink: /teaching/
 title: teaching
-description: Materials for courses you taught. Replace this text with your description.
+description: Teaching material for UF's GatorAI Club's lecture series
 nav: true
 nav_order: 6
 ---
 
-For now, this page is assumed to be a static description of your courses. You can convert it to a collection similar to `_projects/` so that you can have a dedicated page for each course.
+In progress... materials will be added over time. For now check out our [youtube](https://www.youtube.com/@ufai) for past years lectures.
 
-Organize your courses by years, topics, or universities, however you like!
+This year we are teaching three lecture series:
+- Beginner ML
+- Graph ML
+- Applied AI/AI Engineering
+
+Previous lectures have been on CNNs and LLMs.
+
+Our club also tries to host guest speakers every Monday. If you are interested in hosting a talk feel free to reach out to me our to the club at [thegaitorclub@gmail.com](mailto::thegaitorclub@gmail.com).
