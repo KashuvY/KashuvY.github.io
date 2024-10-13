@@ -17,4 +17,4 @@ My name is Youval Kashuv and I am a 3rd year Computer Science and Math student a
 
 Recently I worked at [Cuffed](https://www.cuffed.dating/) as an Algorithm Developer Intern, training machine learning models and designing algorithms to increase user match rate. Before that, I was a Machine Learning Engineer Intern at [Intrinio](https://intrinio.com/). There I created an end-to-end pipeline for extraction/standardization of 8-K SEC data, providing new data from over 1,000 publicly traded companies
 
-My interests include geometric deep learning, GNNs, and reinforcement learning. Actively searching for ML engineer/research intern positions for Summer 2025. Feel free to reach out to me at [youval.kashuv@ufl.edu](mailto::youval.kashuv@ufl.edu).
+My interests include geometric deep learning, GNNs, and reinforcement learning.
