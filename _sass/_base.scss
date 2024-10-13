@@ -2,6 +2,11 @@
  * Styles for the base elements of the theme.
  ******************************************************************************/
 
+
+html {
+  font-size: 18px; // Increase this value to make the overall font size larger
+}
+
 // Typography
 
 p,
@@ -248,6 +253,7 @@ ul.task-list input[type="checkbox"] {
   border-bottom: 1px solid var(--global-divider-color);
   background-color: var(--global-bg-color);
   opacity: 0.95;
+  font-size: 20px;
 }
 
 .navbar .dropdown-menu {
