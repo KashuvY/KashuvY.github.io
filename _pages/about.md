@@ -15,6 +15,6 @@ social: false # includes social icons at the bottom of the page
 
 My name is Youval Kashuv and I am a 3rd year Computer Science and Math student at the [University of Florida](https://www.cise.ufl.edu/), where I research under the guidance of [Dr. My Thai](https://www.cise.ufl.edu/~mythai/) in the areas of GNNs, Information Integrity, and Federated Learning. 
 
-Recently I worked at [Cuffed](https://www.cuffed.dating/) as an Algorithm Developer Intern, training machine learning models and designing algorithms to increase user match rate. Before that, I was a Machine Learning Engineer Intern at [Intrinio](https://intrinio.com/). There I created an end-to-end pipeline for extraction/standardization of 8-K SEC data, providing new data from over 1,000 publicly traded companies
+Recently I worked at [Cuffed](https://www.cuffed.dating/) as a Machine Learning Engineer Intern, training/evaluating machine learning models and designing algorithms to increase user match rate. Before that, I was a Machine Learning Engineer Intern at [Intrinio](https://intrinio.com/). There I created an end-to-end pipeline for extraction/standardization of 8-K SEC data, providing new data from over 1,000 publicly traded companies
 
-My interests include geometric deep learning, GNNs, and reinforcement learning.
+My interests include geometric deep learning, GNNs, reinforcement learning, and recently, computer vision.

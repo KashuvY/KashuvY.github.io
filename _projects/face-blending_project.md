@@ -1,10 +1,11 @@
 ---
 layout: page
 title: Image blending using Laplacian pyramids
-description: 
+description: (Write up in progress...)
 img: assets/img/lapl-pyr.png
 importance: 2
 category: fun
+in_progress: true
 ---
 Suppose you want to downsample and image $I$ (shrink it so it contains less pixels). One reason you would want to do this is to compress it.
 

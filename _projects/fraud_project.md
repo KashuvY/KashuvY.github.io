@@ -3,7 +3,7 @@ layout: page
 title: Federated Fraud Detection
 description: Privacy preserving fraud detection using TGNNs in a HFL environment
 img: assets/img/fraud.png
-importance: 1
+importance: 2
 category: work
 ---
 Credit card fraud is a persistent challenge for financial institutions, requiring sophisticated detection methods capable of analyzing large volumes of transactional data in real-time.

@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 display_date: Summer/Fall 2024
 ---
-Algorithm Developer Intern at Cuffed
+ML Engineer Intern at Cuffed
