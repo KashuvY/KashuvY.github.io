@@ -5,6 +5,7 @@ description: Implementing minesweeper in C++ 🎉
 img: assets/img/minesweeper.png
 importance: 3
 category: fun
+published: false
 ---
 
 Every project has a beautiful feature showcase page.

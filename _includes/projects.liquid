@@ -3,38 +3,78 @@
     border-color: #007bff; /* Or any color to distinguish external links */
   }
 
-  .pdf-icon, .html-icon, .github-icon {
+  .pdf-icon, .html-icon, .github-icon, .in-progress-icon {
     margin-left: 10px;
     color: #007bff; /* Or any color you prefer */
   }
 
-  .pdf-icon .icon, .html-icon .icon, .github-icon .icon {
+  .pdf-icon .icon, .html-icon .icon, .github-icon .icon, .in-progress-icon .icon {
     font-size: 1.2em;
+  }
+
+  .in-progress-icon {
+    color: #ffa500; /* Orange color for in-progress icon */
+  }
+
+  .card.in-progress img {
+    opacity: 0.7;
+  }
+
+  .card.in-progress:hover img {
+    transform: none;
+  }
+
+  .card.in-progress {
+    cursor: default;
+  }
+
+  .card.in-progress a {
+    pointer-events: none;
+    color: inherit;
+    text-decoration: none;
   }
 </style>
 
 <div class="col">
-  <div class="card h-100 hoverable {% if project.pdf_path or project.html_path or project.redirect %}external-link{% endif %}">
+  <div class="card h-100 hoverable {% if project.pdf_path or project.html_path or project.redirect %}external-link{% endif %} {% if project.in_progress %}in-progress{% endif %}">
     {% if project.img %}
-      {%
-        include figure.liquid
-        loading="eager"
-        path=project.img
-        sizes = "250px"
-        alt="project thumbnail"
-        class="card-img-top"
-      %}
+      {% if project.in_progress %}
+        {%
+          include figure.liquid
+          loading="eager"
+          path=project.img
+          sizes = "250px"
+          alt="project thumbnail"
+          class="card-img-top"
+        %}
+      {% else %}
+        <a href="{% if project.pdf_path %}{{ project.pdf_path | relative_url }}{% elsif project.html_path %}{{ project.html_path | relative_url }}{% elsif project.redirect %}{{ project.redirect | relative_url }}{% else %}{{ project.url | relative_url }}{% endif %}"
+           {% if project.pdf_path or project.html_path or project.redirect %}target="_blank" rel="noopener noreferrer"{% endif %}>
+          {%
+            include figure.liquid
+            loading="eager"
+            path=project.img
+            sizes = "250px"
+            alt="project thumbnail"
+            class="card-img-top"
+          %}
+        </a>
+      {% endif %}
     {% endif %}
     <div class="card-body">
       <h2 class="card-title">
-        <a href="{% if project.pdf_path %}{{ project.pdf_path | relative_url }}{% elsif project.html_path %}{{ project.html_path | relative_url }}{% elsif project.redirect %}{{ project.redirect | relative_url }}{% else %}{{ project.url | relative_url }}{% endif %}"
-           {% if project.pdf_path or project.html_path or project.redirect %}target="_blank" rel="noopener noreferrer"{% endif %}>
+        {% if project.in_progress %}
           {{ project.title }}
-        </a>
+        {% else %}
+          <a href="{% if project.pdf_path %}{{ project.pdf_path | relative_url }}{% elsif project.html_path %}{{ project.html_path | relative_url }}{% elsif project.redirect %}{{ project.redirect | relative_url }}{% else %}{{ project.url | relative_url }}{% endif %}"
+             {% if project.pdf_path or project.html_path or project.redirect %}target="_blank" rel="noopener noreferrer"{% endif %}>
+            {{ project.title }}
+          </a>
+        {% endif %}
       </h2>
       <p class="card-text">{{ project.description }}</p>
       <div class="row ml-1 mr-1 p-0">
-        {% if project.github %}
+        {% if project.github and project.in_progress != true %}
           <div class="github-icon">
             <div class="icon" data-toggle="tooltip" title="Code Repository">
               <a href="{{ project.github }}" target="_blank" rel="noopener noreferrer">
@@ -49,16 +89,23 @@
             {% endif %}
           </div>
         {% endif %}
-        {% if project.pdf_path %}
+        {% if project.pdf_path and project.in_progress != true %}
           <div class="pdf-icon">
             <div class="icon" data-toggle="tooltip" title="PDF Document">
               <i class="fa-solid fa-file-pdf"></i>
             </div>
           </div>
-        {% elsif project.html_path %}
+        {% elsif project.html_path and project.in_progress != true %}
           <div class="html-icon">
             <div class="icon" data-toggle="tooltip" title="HTML Document">
               <i class="fa-solid fa-file-code"></i>
+            </div>
+          </div>
+        {% endif %}
+        {% if project.in_progress %}
+          <div class="in-progress-icon">
+            <div class="icon" data-toggle="tooltip" title="In Progress">
+              <i class="fa-solid fa-hourglass-half"></i>
             </div>
           </div>
         {% endif %}

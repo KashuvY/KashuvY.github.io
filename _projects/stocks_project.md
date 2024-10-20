@@ -1,10 +1,11 @@
 ---
 layout: page
 title: Stock Pricing
-description: Can ML predict quarterly earnings?
+description: Can ML predict quarterly earnings? (Write up in progress...)
 img: /assets/img/stocks.png
-importance: 1
+importance: 2
 category: fun
+in_progress: true
 ---
 
 Every project has a beautiful feature showcase page.

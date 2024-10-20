@@ -5,6 +5,7 @@ description: Playing around with RGB values
 img: assets/img/1.jpg
 importance: 4
 category: fun
+published: false
 ---
 
 Every project has a beautiful feature showcase page.
