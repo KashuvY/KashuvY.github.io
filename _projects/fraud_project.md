@@ -6,9 +6,20 @@ img: assets/img/fraud.png
 importance: 1
 category: work
 ---
-Credit card fraud is a persistent challenge for financial institutions, requiring sophisticated detection methods capable of analyzing large volumes of transactional data in real-time. Traditional machine learning models often struggle to capture the complex temporal and relational patterns present in transaction networks. Temporal Graph Neural Networks (TGNNs) have emerged as powerful tools for modeling such data, effectively integrating temporal dynamics with the structural relationships between entities.
+Credit card fraud is a persistent challenge for financial institutions, requiring sophisticated detection methods capable of analyzing large volumes of transactional data in real-time.
+In fact, an estimated 52 million Americans had fraudulent charges on their credit or debit cards in 2023, totaling over $5 billion in unauthorized purchases [[1](https://www.security.org/digital-safety/credit-card-fraud-report/)].
 
-However, deploying TGNNs on sensitive financial data raises significant privacy concerns. Horizontal Federated Learning (HFL) offers a solution by enabling multiple institutions to collaboratively train a shared model without exchanging raw data. In this post, we delve into the mathematical foundations of integrating TGNNs within an HFL framework to enhance credit card fraud detection while preserving data privacy.
+Predicting and preventing credit card fraud is challenging because:
+1. Banks are typically prohibited from sharing their transaction statistics due to data security and privacy regulations.
+2. Credit card transaction datasets are extremely biased, with far fewer examples of fraudulent purchases compared to legitimate ones.
+3. Smaller financial institutions, especially in developing countries, often struggle with limited access to extensive transaction data.
+
+Traditional machine learning models often struggle to capture the complex temporal and relational patterns present in transaction networks.
+Temporal Graph Neural Networks (TGNNs) have emerged as powerful tools for modeling such data, effectively integrating temporal dynamics with the structural relationships between entities.
+
+However, deploying TGNNs on sensitive financial data raises significant privacy concerns.
+Horizontal Federated Learning (HFL) offers a solution by enabling multiple institutions to collaboratively train a shared model without exchanging raw data.
+In this post, we delve into the mathematical foundations of integrating TGNNs within an HFL framework to enhance credit card fraud detection while preserving data privacy.
 
 <strong>Project overview:</strong>
 - Implemented and trained a dynamic graph neural network (DGNN) in a <strong>horizontal federated learning</strong> (HFL) setting for anomalous and <strong>privacy preserving fraud detection</strong> of credit card transactions, <strong>successfully achieving $$>96\%$$ accuracy</strong> on datasets with upwards of 20 clients.
@@ -21,16 +32,18 @@ However, deploying TGNNs on sensitive financial data raises significant privacy 
 
 ---
 
-
 ## Temporal Graph Neural Networks (TGNNs)
-
 ### Modeling Transaction Networks
-Credit card transactions can be naturally represented as a temporal graph. Formally, let $$G = (V, E, T)$$ denote a temporal graph where:
+In order to train our model, we must first construct a graph from our available data.
+Credit card transactions can be naturally represented as a temporal graph. Formally, let $$ G = (V, E, T) $$ denote a temporal graph where:
 - $$V$$ is the set of nodes representing credit card accounts.
 - $$E \subset V \times V $$ is the set of edges representing transactions between accounts.
 - $$T$$ is the set of timestamps associated with each edge.
 Each edge $$e=(u,v,t)$$ carries features $$x_e$$ (e.g., transaction amount, merchant category) and may have an associated label $$y_e$$ indicating whether the transaction is fraudulent.
 
+Depending on the available data, one can also construct a heterogenous graph with two seperate node sets, one for users and another for vendors.
+
+[Insert snapshot of dataset]
 ### TGNN Architecture
 TGNNs extend traditional Graph Neural Networks by incorporating temporal information into the message-passing framework. The node embeddings $$h_v^t$$ evolve over time based on interactions with neighboring nodes.
 
@@ -61,13 +74,33 @@ By iteratively applying these functions, the TGNN captures temporal dependencies
 ---
 
 ## Horizontal Federated Learning (HFL)
+Federated learning enables multiple clients to collaboratively train a global model $$\theta$$ without sharing their local data.
+Each client computes model updates using their data and sends these updates to a central server, which aggregates them to update the global model.
+Federated learning has found incredible success in the healthcare industry [[2](https://www.nature.com/articles/s41598-023-28974-6)] [[3](https://pmc.ncbi.nlm.nih.gov/articles/PMC10418741/)], mobile applications [[4](https://engineering.fb.com/2022/06/14/production-engineering/federated-learning-differential-privacy/)], and is showing promise in training autonomous vehicles [[4](https://liangqiy.com/publication/a_survey_of_federated_learning_for_connected_and_automated_vehicles/A_Survey_of_Federated_Learning_for_Connected_and_Automated_Vehicles.pdf)]
 
-### Federated Learning Overview
-Federated Learning enables multiple clients to collaboratively train a global model $$\theta$$ without sharing their local data. Each client computes model updates using their data and sends these updates to a central server, which aggregates them to update the global model.
+Federated learning comes in several varieties, each designed to address specific data distribution scenarios and privacy requirements. 
+Horizontal federated learning, also known as sample-based federated learning, is used when different participants have the same feature space but different samples. 
+This is the most common type of federated learning and is often seen in scenarios where:
+- Multiple organizations have similar types of data (e.g., different banks with customer transaction data)
+- User devices contain personal data (e.g., smartphones with typing patterns for keyboard prediction)
+In this approach, participants collaborate to train a shared model without exchanging raw data, only model updates.
+For credit card fraud detection, different banks or financial institutions act as clients, each holding transaction data for their customers.
 
-### Horizontal Federated Learning
-In Horizontal Federated Learning, clients possess datasets with the same feature space but different samples. For credit card fraud detection, different banks or financial institutions act as clients, each holding transaction data for their customers.
+Vertical federated learning comes into play when participants have different feature sets but overlapping samples. This type is useful in scenarios such as:
+- Multiple departments within a company have different data about the same customers
+- Different organizations have complementary data about shared clients
+Vertical federated learning allows these entities to combine their features to build a more comprehensive model without directly sharing data.
 
+Lastly, federated transfer learning combines both horizontal and vertical federated learning and is often the most difficult to implemented. Figure 1. visulizes the subtle differences between the three types.
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/fed-learning.png" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    Figure 1. Different classes of federated learning
+</div>
 ---
 
 ## Integrating TGNN with HFL
@@ -77,7 +110,6 @@ Our objective is to train a global TGNN model $$\theta$$ for fraud detection by 
 
 Each client $$k$$ has its local transaction graph $$G_k = (V_k, E_k, T_k) $$, with node features $$X_k$$ and edge features $$E_k$$.
 
-### Local Training Objective
 Each client minimizes a local loss function:
 
 $$\mathcal{L}_k(\theta) = \frac{1}{|E_k|} \sum_{(e, y_e) \in E_k} \ell(f_\theta(e), y_e)$$
@@ -86,11 +118,11 @@ where:
 - $$f_\theta(e)$$ is the TGNN's prediction for edge $$e$$.
 - $$\ell$$ is a loss function (e.g., cross-entropy loss).
 
-### Federated Learning Process
+The federated learning process then works like this:
 
-1. **Initialization**: The central server initializes the global model parameters $\theta_0$ and broadcasts them to all clients.
+1. **Initialization**: The central server initializes the global model parameters $$\theta_0$$ and broadcasts them to all clients.
 
-2. **Local Training**: Each client $k$ performs local training for $E$ epochs using its data $D_k$:
+2. **Local Training**: Each client $$k$$ performs local training for $$E$$ epochs using its data $$D_k$$:
 
    $$\theta_k = \theta_{t-1} - \eta \nabla \mathcal{L}_k(\theta_{t-1})$$
 
@@ -104,138 +136,14 @@ where:
 
    where:
    - $$K$$ is the number of clients.
-   - $$n_k = |D_k|$$ is the number of samples at client $$k$$.
+   - $$n_k$$ is the number of samples at client $$k$$.
    - $$n = \sum_{k=1}^{K} n_k$$.
 
 5. **Iteration**: Steps 2–4 are repeated for multiple rounds until convergence.
 
-## Mathematical Details
+Steps 2-4 can also be invoked after certain periods of elapsed time.
+In step 4, the weighted average ensures that clients with more data have a proportionally larger influence on the global model. To further protect sensitive transaction data, clients can implement differential privacy by adding noise to their model updates, ensuring that the influence of any single transaction on the model update is limited.
 
-### Message Passing in TGNN
+## Experimental Results
 
-The message and update functions are instantiated as:
-
-1. **Message Function**:
-   $$m_{u \rightarrow v}^{t} = \sigma\left(W_m [h_u^{t^-} \, \| \, h_v^{t^-} \, \| \, x_{e} \, \| \, \delta_t]\right)$$
-
-   where:
-   - $$\sigma$$ is an activation function (e.g., ReLU).
-   - $$W_m$$ is a learnable weight matrix.
-   - $$\delta_t = t - t_{uv}$$ is the time since the last interaction.
-   - $$\|$$ denotes concatenation.
-
-2. **Update Function**:
-   $$h_v^{t} = \sigma\left(W_u [h_v^{t^-} \, \| \, m_v^{t}]\right)$$
-
-   where $$W_u$$ is another learnable weight matrix.
-
-### Loss Function
-
-For binary fraud detection, the cross-entropy loss is:
-
-$$\ell(f_\theta(e), y_e) = -\left[y_e \log f_\theta(e) + (1 - y_e) \log(1 - f_\theta(e))\right]$$
-
-### Federated Averaging
-
-The aggregated global model parameters are computed as:
-
-$$\theta_t = \sum_{k=1}^{K} \frac{n_k}{n} \theta_k$$
-
-This weighted average ensures that clients with more data have a proportionally larger influence on the global model.
-
-## Privacy Preservation
-
-### Differential Privacy
-
-To protect sensitive transaction data, clients can implement differential privacy by adding noise to their model updates:
-
-1. **Gradient Clipping**:
-   $$\tilde{g}_k = \frac{g_k}{\max\left(1, \frac{\| g_k \|_2}{S} \right)}$$
-
-   where $$S$$ is the clipping threshold.
-
-2. **Noise Addition**:
-   $$\hat{g}_k = \tilde{g}_k + \mathcal{N}(0, \sigma^2 S^2 I)$$
-
-   where:
-   - $$\mathcal{N}(0, \sigma^2 S^2 I)$$ represents Gaussian noise with mean zero and covariance $$\sigma^2 S^2 I$$.
-   - $$\sigma$$ controls the noise scale.
-
-This mechanism ensures that the influence of any single transaction on the model update is limited, providing formal privacy guarantees.
-
-## Convergence Analysis
-
-### Assumptions
-
-- **Smoothness**: Each local objective $$\mathcal{L}_k(\theta)$$ is $$L$$-smooth:
-  $$\|\nabla \mathcal{L}_k(\theta_1) - \nabla \mathcal{L}_k(\theta_2)\| \leq L \|\theta_1 - \theta_2\|$$
-
-- **Bounded Variance**: The variance of the stochastic gradients is bounded:
-  $$\mathbb{E}_{\xi \sim D_k} \left[ \|\nabla_\theta \ell(\theta; \xi) - \nabla \mathcal{L}_k(\theta)\|^2 \right] \leq \sigma_k^2$$
-
-- **Unbiased Gradients**: The local gradients are unbiased estimates of the true gradient:
-  $$\mathbb{E}_{\xi \sim D_k} \left[ \nabla_\theta \ell(\theta; \xi) \right] = \nabla \mathcal{L}_k(\theta)$$
-
-### Convergence Rate
-
-Under these assumptions, the convergence rate of federated averaging can be characterized as:
-
-$$\mathbb{E}\left[\mathcal{L}(\theta_t) - \mathcal{L}(\theta^*)\right] \leq \frac{L}{2 t \eta} \left\| \theta_0 - \theta^* \right\|^2$$
-
-where:
-- $$\theta_t$$ is the global model at round $t$.
-- $$\theta^*$$ is the optimal model parameters.
-- $$\eta$$ is the learning rate.
-
-Proper choice of $$\eta$$ and sufficient communication rounds $$t$$ ensure convergence to the optimal solution.
-
-## Communication Efficiency
-
-### Reducing Communication Overhead
-
-Communication between clients and the server can be a bottleneck. Techniques to mitigate this include:
-
-- **Model Compression**: Clients transmit compressed model updates using methods like sparsification or quantization.
-- **Periodic Communication**: Clients perform multiple local updates before communicating with the server.
-- **Adaptive Communication**: Adjusting the communication frequency based on model convergence metrics.
-
-Mathematically, if $$\theta_k^\tau$$ represents the model after $$\tau$$ local updates, clients send $$\theta_k^\tau - \theta_{t-1}$$, reducing the amount of data transmitted.
-
-## Experimental Setup
-
-While actual experimental results are beyond this scope, a typical setup would involve:
-
-- **Dataset**: Real or simulated credit card transaction data partitioned across multiple institutions.
-
-- **Baselines**:
-  - Centralized TGNN model trained on aggregated data (serves as an upper bound).
-  - Local TGNN models trained independently by each client.
-  - Federated models without temporal or graph components.
-
-- **Metrics**:
-  - **Detection Performance**: Precision, recall, F1-score, area under the ROC curve.
-  - **Communication Efficiency**: Total data transmitted, number of communication rounds.
-  - **Privacy Metrics**: Differential privacy parameters (e.g., privacy budget $\varepsilon$).
-
-### Expected Outcomes
-
-- The federated TGNN should achieve performance close to the centralized model while preserving data privacy.
-- Communication-efficient techniques should reduce overhead without significantly impacting model accuracy.
-- Differential privacy mechanisms should provide strong privacy guarantees with minimal loss in detection performance.
-
-## Conclusion
-
-Integrating Temporal Graph Neural Networks within a Horizontal Federated Learning framework provides a mathematically robust and practical approach to credit card fraud detection. This methodology effectively captures the intricate temporal and relational patterns in transaction data while ensuring that sensitive information remains secure.
-
-By enabling collaborative model training across institutions without sharing raw data, financial entities can enhance their fraud detection capabilities collectively. The mathematical formulations and privacy-preserving techniques discussed lay a solid foundation for implementing and advancing these models in real-world applications.
-
-## Future Work
-
-- **Advanced Temporal Modeling**: Incorporate attention mechanisms or sequence modeling techniques to better capture long-term dependencies.
-- **Personalized Federated Learning**: Develop methods that allow clients to adapt the global model to their local data distributions.
-- **Enhanced Privacy Techniques**: Explore cryptographic approaches like secure multi-party computation or homomorphic encryption to further strengthen privacy.
-- **Robustness to Heterogeneity**: Address challenges arising from non-IID data distributions across clients, ensuring fair performance improvements.
-
-## Final Remarks
-
-Mathematical rigor and privacy preservation are paramount when deploying machine learning models in sensitive domains like fraud detection. The fusion of TGNNs and Horizontal Federated Learning presents a promising avenue for both research and practical implementation, balancing performance with the critical need for data security.
+Write up in progress...
