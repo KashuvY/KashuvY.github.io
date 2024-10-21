@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Sign Language Recognition
-description: Classyfing noisy and rotated images American Sign Language letters 
+description: Classyfing noisy and rotated images of American Sign Language letters 
 img: assets/img/asl.png
 importance: 1
 category: fun
