@@ -32,6 +32,8 @@ In this post, we delve into the mathematical foundations of integrating TGNNs wi
 
 ---
 
+Technical writeup in progress...
+<!--
 ## Temporal Graph Neural Networks (TGNNs)
 ### Modeling Transaction Networks
 In order to train our model, we must first construct a graph from our available data.
@@ -145,5 +147,5 @@ Steps 2-4 can also be invoked after certain periods of elapsed time.
 In step 4, the weighted average ensures that clients with more data have a proportionally larger influence on the global model. To further protect sensitive transaction data, clients can implement differential privacy by adding noise to their model updates, ensuring that the influence of any single transaction on the model update is limited.
 
 ## Experimental Results
-
 Write up in progress...
+-->
