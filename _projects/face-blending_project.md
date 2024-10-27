@@ -1,11 +1,12 @@
 ---
 layout: page
-title: Image blending using Laplacian pyramids
-description: (Write up in progress...)
+title: Computer Vision From Scratch
+description: A variety of CV tasks implemented from scratch in Python
 img: assets/img/lapl-pyr.png
-importance: 2
+importance: 1
 category: fun
-in_progress: true
+redirect: https://github.com/KashuvY/ScratchCV
+github: https://github.com/KashuvY/ScratchCV
 ---
 Suppose you want to downsample and image $I$ (shrink it so it contains less pixels). One reason you would want to do this is to compress it.
 
