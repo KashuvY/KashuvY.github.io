@@ -2,7 +2,7 @@
 layout: page
 title: Computer Vision From Scratch
 description: A variety of CV tasks implemented from scratch in Python
-img: assets/img/lapl-pyr.png
+img: assets/img/military.png
 importance: 1
 category: fun
 redirect: https://github.com/KashuvY/ScratchCV
