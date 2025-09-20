@@ -13,8 +13,9 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: false # includes social icons at the bottom of the page
 ---
 
-My name is Youval Kashuv and I am a 3rd year Computer Science and Math student at the [University of Florida](https://www.cise.ufl.edu/), where I research under the guidance of [Dr. My Thai](https://www.cise.ufl.edu/~mythai/) in the areas of GNNs, Information Integrity, and Federated Learning. 
+My name is Youval Kashuv and I am a 4th year Computer Science and Math student at the [University of Florida](https://www.cise.ufl.edu/). Currently, I am a Research Intern at [Headlands Technologies](https://www.headlandstech.com) working with deep neural networks. 
 
-Recently I worked at [Cuffed](https://www.cuffed.dating/) as a Machine Learning Engineer Intern, training/evaluating machine learning models and designing algorithms to increase user match rate. Before that, I was a Machine Learning Engineer Intern at [Intrinio](https://intrinio.com/). There I created an end-to-end pipeline for extraction/standardization of 8-K SEC data, providing new data from over 1,000 publicly traded companies
+I've conducted research under the guidance of [Dr. My Thai](https://www.cise.ufl.edu/~mythai/) in the areas of GNNs, Information Integrity, Federated Learning, and Combinatorial Optimization. 
 
-My interests include geometric deep learning, GNNs, reinforcement learning, and recently, computer vision.
+In the past I worked at [Cuffed](https://www.cuffed.dating/) as a Machine Learning Engineer Intern, training/evaluating machine learning models and designing algorithms to increase user match rate. Before that, I was a Machine Learning Engineer Intern at [Intrinio](https://intrinio.com/). There I created an end-to-end pipeline for extraction/standardization of 8-K SEC data, providing new data from over 1,000 publicly traded companies
+
