@@ -1,0 +1,60 @@
+# _data/learnings.yml
+- year: 2025 # Can keep for your own organization or remove if date is sufficient
+  date: "2025-05-11" # Specific date for the entry
+  intensity: 3
+  tags: ["planning", "jekyll"] # Tags for this day's activities
+  activities:
+    - title: "Pivoted to Daily Learning Calendar"
+      details: |
+        - Researched GitHub-style daily grid.
+        - Updated data structure for daily entries.
+      type: "project-work"
+    - title: "Read: Jekyll Date Formatting"
+      details: "Looked into Liquid date filters for calendar generation."
+      type: "research"
+
+- date: "2025-05-10"
+  year: 2025
+  intensity: 4
+  tags: ["research", "papers", "ai", "machine-learning", "deep-learning"] # Adjust tags as you see fit
+  activities:
+    - title: "Paper: FREDF - Freezing Dataset for Finetuning with Fixed Random Features"
+      details: |
+        - [Your key takeaway regarding its method for finetuning...]
+        - [Your key takeaway about fixed random features in this context...]
+        - [Other important findings or implications...]
+      type: "paper"
+      source: "https://openreview.net/pdf?id=4A9IdSa1ul"
+    - title: "Paper: Star - Self-Teach Agent with Reinforcement Learning"
+      details: |
+        - [Your key takeaway about the 'Star' agent's architecture or learning process...]
+        - [Your key takeaway regarding its application of reinforcement learning...]
+        - [Significant results or comparisons...]
+      type: "paper"
+      source: "https://arxiv.org/pdf/2403.07968"
+    - title: "Paper: Optimal Transport for Applied Mathematicians"
+      details: |
+        - [Your key takeaway on how Optimal Transport is presented for mathematicians...]
+        - [Your key takeaway regarding its connection to Calculus of Variations, PDEs, or Statistics...]
+        - [Any interesting applications or theoretical points...]
+      type: "paper"
+      source: "https://arxiv.org/pdf/1910.05653"
+    - title: "Paper: Adaptive Clusters (URL Note)" # Using your description as URL seems to be for a future paper
+      details: |
+        - [Your key takeaway regarding adaptive clustering from this paper...]
+        - [What makes the clustering 'adaptive' according to the paper?...]
+        - [Main contributions or techniques discussed...]
+      type: "paper"
+      source: "https://arxiv.org/pdf/2502.15315"
+      note: "The provided arXiv URL (2502.15315) seems to point to a future date or may be a placeholder; using user-provided topic."
+
+- year: 2025
+  date: "2025-01-01"
+  intensity: 1
+  tags: ["new-year", "learning-goal"]
+  activities:
+    - title: "Set Learning Goals for the Year"
+      details: "Outlined key areas to focus on for learning in 2025."
+      type: "planning"
+
+# Add more daily entries as needed

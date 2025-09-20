@@ -1,0 +1,159 @@
+// _sass/_learning_calendar.scss
+
+.learning-calendar-wrapper {
+  margin-bottom: 2rem;
+}
+
+.daily-calendar-year-section {
+  margin-bottom: 2.5rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  h4 { // Year Title
+    margin-bottom: 1rem;
+    font-size: 1.2em;
+    font-weight: 600;
+  }
+}
+
+.daily-calendar-graph {
+  display: grid;
+  // grid-template-areas: // Using implicit rows for now
+  //   "months months"
+  //   "daylabels cells";
+  grid-template-columns: auto 1fr; // Column for day labels, column for cells+month labels
+  gap: 10px; // Gap between day-labels column and (cells+month-labels) column
+  position: relative; // For positioning month labels if needed more precisely later
+}
+
+.month-labels-track {
+  grid-column: 2 / 3; // Span across the cells grid column
+  grid-row: 1 / 2;    // Place it in the first conceptual row
+  display: grid;
+  grid-template-columns: repeat(53, minmax(12px, 1fr)); // Align with week columns
+  gap: 2px; // Same as day-cells-grid gap
+  height: 20px; // Give it some height
+  margin-bottom: 4px; // Space below month labels
+
+  .month-label {
+    font-size: 0.65em;
+    color: var(--global-text-color-light, #777);
+    text-align: left; // Align with the start of the month's first week
+    // The grid-column style in the HTML is a simplified positioning attempt.
+    // Proper month spanning is complex and may require JS or more advanced CSS.
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 2px; // Align with cell padding
+  }
+}
+
+// _sass/_learning_calendar.scss
+// ... (other styles) ...
+
+.day-labels-track {
+  grid-column: 1 / 2; // First column
+  grid-row: 2 / 3;    // Align with the cells grid's row
+  display: grid;
+  grid-template-rows: repeat(7, minmax(12px, 1fr)); // Or match cell height better
+  gap: 2px; // Same as day-cells-grid gap
+  align-items: center; // This will vertically center the text in the row height
+  padding-right: 8px;
+
+  .day-label {
+    font-size: 0.65em;
+    color: var(--global-text-color-light, #777);
+    text-align: right;
+    line-height: 1; // You can adjust this if needed for vertical centering with cell height
+    visibility: hidden; // Hide all day labels by default
+
+    // Only make Mon, Wed, Fri labels visible (GitHub style)
+    &.day-label-mon,
+    &.day-label-wed,
+    &.day-label-fri {
+      visibility: visible;
+    }
+  }
+}
+
+// ... (rest of your SCSS, including .day-cells-grid and .day-cell) ...
+
+.day-cells-grid {
+  grid-column: 2 / 3; // Second column, aligned under month-labels-track
+  grid-row: 2 / 3;    // Second conceptual row, beside day-labels-track
+  display: grid;
+  grid-template-columns: repeat(53, minmax(12px, 1fr)); // ~53 weeks (adjust minmax for cell size)
+  grid-template-rows: repeat(7, minmax(12px, 1fr));    // 7 days
+  grid-auto-flow: column; // Fill columns first (weeks), then wrap to new set of columns (days in week)
+  gap: 2px;
+  // border: 1px solid #eee; // Optional: for visual debugging of the grid container
+}
+
+.day-cell {
+  aspect-ratio: 1/1; // Keep cells square
+  background-color: var(--global-grey-super-lt, #f0f0f0); // Default for empty/no-data days
+  border-radius: 2px;
+  // min-width: 12px; // Set by grid-template-columns's minmax now
+  // min-height: 12px; // Set by grid-template-rows's minmax now
+  font-size: 0.5em; // If you were to put day numbers inside
+
+  &.empty-offset,
+  &.empty-trailing {
+    background-color: transparent; // Make unused cells truly empty or a very faint color
+    // visibility: hidden; // Alternative to transparent
+  }
+
+  &.no-learning {
+     background-color: var(--global-grey-lt-100, #e8e8e8); // Slightly different from truly empty
+  }
+
+  &.has-learning {
+    cursor: pointer;
+    transition: transform 0.1s ease-out;
+    &:hover {
+      // Use a border or slightly scale for hover, avoid changing background drastically
+      // border: 1px solid var(--global-text-color, #333);
+      transform: scale(1.15);
+      position: relative; // Ensure it comes above others on hover
+      z-index: 1;
+    }
+  }
+
+  // Intensity levels
+  &.intensity-1 { background-color: var(--my-cal-green-1, #9be9a8); }
+  &.intensity-2 { background-color: var(--my-cal-green-2, #40c463); }
+  &.intensity-3 { background-color: var(--my-cal-green-3, #30a14e); }
+  &.intensity-4 { background-color: var(--my-cal-green-4, #216e39); }
+
+  &.active { // When clicked (by JS)
+    outline: 2px solid var(--global-theme-color, #0366d6);
+    outline-offset: 1px;
+  }
+}
+
+// Styles for the details display area (mostly unchanged, but IDs will be updated by JS)
+.learning-details {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 1px solid var(--global-divider-color, #e1e4e8);
+  border-radius: 4px; // Using the fix from before
+  background-color: var(--global-card-bg-color, #fdfdfd);
+  box-shadow: var(--global-shadow-sm, 0 1px 3px rgba(0,0,0,0.1));
+
+  h3 { /* This ID will change in JS to target day-specific header */
+    margin-top: 0;
+    color: var(--global-theme-color, #0366d6);
+    margin-bottom: 1rem;
+  }
+  .activity-item {
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--global-divider-color-lt, #eee);
+    &:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    strong { display: block; font-weight: 600; margin-bottom: 0.25rem; }
+    div, p { font-size: 0.9em; color: var(--global-text-color-light, #555); margin-bottom: 0;
+      ul, ol { margin-top: 0.25rem; padding-left: 1.2rem; }
+    }
+  }
+}
